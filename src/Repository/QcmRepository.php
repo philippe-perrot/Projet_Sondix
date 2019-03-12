@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Qcm;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * @method Qcm|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +18,22 @@ class QcmRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Qcm::class);
+    }
+    
+    //Retourne les 4 derniers QCM mis en ligne
+    public function findLatest(): array
+    {
+        return $this->findVisibleQcm()
+            ->setMaxResults(4)
+            ->getQuery()
+            ->getResult();
+    }
+    
+    //Retourne les QCM validés et mis en ligne
+    private function findVisibleQcm(): QueryBuilder
+    {
+        return $this->createQueryBuilder('qcm')
+            ->where('qcm.validation_qcm = 0');
     }
 
     // /**
