@@ -9,4 +9,23 @@ home:
 
 qcm:
     path: /qcm
-    controller: App\Controller\QcmController::index    
+    controller: App\Controller\QcmController::index
+show:
+    path: /qcm/{slug}-{id}
+    controller: App\Controller\QcmController::show
+    requirements: 
+        slug : '[a-z0-9\-]*'   
+index: 
+    path: /admin
+    controller: App\Controller\Admin\AdminQcmController::index
+create:
+    path: /admin/create
+    controller: App\Controller\Admin\AdminQcmController::new         
+edit:
+    path: /admin/{id}
+    controller: App\Controller\Admin\AdminQcmController::edit
+    methods: GET|POST
+delete:
+    path: /admin/{id}
+    controller: App\Controller\Admin\AdminQcmController::delete
+    methods: DELETE

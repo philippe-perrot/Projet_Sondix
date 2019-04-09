@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Gérer les QCM - Sondix' %}
+
+{% block body %}
+
+
+<div class = "container mt-4">
+
+	<h1>Gérer les QCM</h1>
+	
+	{% for message in app.flashes('success') %}
+		<div class = "alert alert-success">
+			{{ message }}
+		</div>
+	{% endfor %}
+	
+	<table class = "table table-striped">
+		<thead>
+			<tr>
+				<th>Titre</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for qcm in liste_qcm %}
+			<tr>
+				<td>{{ qcm.NomQcm }}</td>
+				<td>
+					<a href = "{{ path('edit', {id:qcm.IdQcm}) }}" class = "btn btn-secondary">Modifier</a>
+					<form method = "post" action="{{ path('delete', {id:qcm.IdQcm}) }}" style = "display: inline-block" onsubmit = "return confirm('Etes-vous sûr de vouloir supprimer ce QCM ?')">
+						<input type = "hidden" name = "_method" value = "DELETE">
+						<input type = "hidden" name = "_token" value = "{{ csrf_token('delete' ~ qcm.IdQcm) }}">
+						<button class = "btn btn-danger">Supprimer</button>
+					</form>
+				</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+	
+	<div class = "text-right">
+		<a href = "{{ path('create') }}" class = "btn btn-primary">Ajouter un QCM</a>
+	</div>
+	
+</div>
+
+{% endblock %}

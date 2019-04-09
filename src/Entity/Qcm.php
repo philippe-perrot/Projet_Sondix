@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Cocur\Slugify\Slugify;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\QcmRepository")
@@ -58,6 +60,11 @@ class Qcm
 
         return $this;
     }
+    
+    public function getSlug(): string 
+    {
+        return (new Slugify())->slugify($this->nom_qcm);
+    }
 
     public function getValidationQcm(): ?bool
     {
@@ -68,6 +75,18 @@ class Qcm
     {
         $this->validation_qcm = $validation_qcm;
 
+        return $this;
+    }
+    
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+    
+    public function setCreatedAt(\DateTime $created_at)
+    {
+        $this->created_at = $created_at;
+        
         return $this;
     }
 
