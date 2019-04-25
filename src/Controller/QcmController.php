@@ -31,7 +31,7 @@ class QcmController extends AbstractController
         ]);
     }
     
-    //Fonction qui retourne la page d'un QCM sélectionné
+    //Fonction qui retourne la page d'un QCM sÃ©lectionnÃ©
     public function show(Qcm $qcm, string $slug): Response 
     {
         if ($qcm->getSlug() !== $slug) 

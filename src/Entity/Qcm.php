@@ -26,15 +26,15 @@ class Qcm
     /**
      * @ORM\Column(type="boolean", options={"default": false})
      */
-    private $validation_qcm = false;
+    private $etat_qcm = false;
     
     /**
      * @ORM\Column(type="datetime")
      */
-    private $created_at;
+    private $date_creation;
     
     public function __construct() {
-        $this->created_at = new \DateTime();
+        $this->date_creation = new \DateTime();
     }
 
     public function getIdQcm(): ?int
@@ -66,26 +66,26 @@ class Qcm
         return (new Slugify())->slugify($this->nom_qcm);
     }
 
-    public function getValidationQcm(): ?bool
+    public function getEtatQcm(): ?bool
     {
-        return $this->validation_qcm;
+        return $this->etat_qcm;
     }
 
-    public function setValidationQcm(bool $validation_qcm): self
+    public function setEtatQcm(bool $etat_qcm): self
     {
-        $this->validation_qcm = $validation_qcm;
+        $this->etat_qcm = $etat_qcm;
 
         return $this;
     }
     
-    public function getCreatedAt()
+    public function getDate_Creation()
     {
-        return $this->created_at;
+        return $this->date_creation;
     }
     
-    public function setCreatedAt(\DateTime $created_at)
+    public function setDate_Creation(\DateTime $date_creation)
     {
-        $this->created_at = $created_at;
+        $this->date_creation = $date_creation;
         
         return $this;
     }

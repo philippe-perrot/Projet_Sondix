@@ -20,14 +20,14 @@ class AdminQcmController extends AbstractController
         $this->em = $em;
     }
     
-    //Récupère tout les QCM existants
+    //Rï¿½cupï¿½re tout les QCM existants
     public function index() 
     {
         $liste_qcm = $this->qcm->findAll();
         return $this->render('admin/index.html.twig', compact('liste_qcm'));
     }
     
-    //Permet de créer un nouveau QCM
+    //Permet de crï¿½er un nouveau QCM
     public function new(Request $request) 
     {
         $qcm = new Qcm();
@@ -38,7 +38,7 @@ class AdminQcmController extends AbstractController
         {
             $this->em->persist($qcm);
             $this->em->flush();
-            $this->addFlash('success', 'Le QCM a bien été créé');
+            $this->addFlash('success', 'Le QCM a bien Ã©tÃ© crÃ©Ã©');
             return $this->redirectToRoute('index');
         }
         
@@ -58,7 +58,7 @@ class AdminQcmController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) 
         {
               $this->em->flush();
-              $this->addFlash('success', 'Le QCM a bien été modifié');
+              $this->addFlash('success', 'Le QCM a bien Ã©tÃ© modifiÃ©');
               return $this->redirectToRoute('index');
         }
         
@@ -74,7 +74,7 @@ class AdminQcmController extends AbstractController
         {
             $this->em->remove($qcm);
             $this->em->flush();
-            $this->addFlash('success', 'Le QCM a bien été supprimé');
+            $this->addFlash('success', 'Le QCM a bien Ã©tÃ© supprimÃ©');
         }
         return $this->redirectToRoute('index');
     }

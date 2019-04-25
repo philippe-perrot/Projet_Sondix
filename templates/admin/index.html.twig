@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title 'Gérer les QCM - Sondix' %}
+{% block title 'Gï¿½rer les QCM - Sondix' %}
 
 {% block body %}
 
 
 <div class = "container mt-4">
 
-	<h1>Gérer les QCM</h1>
+	<h1>GÃ©rer les QCM</h1>
 	
 	{% for message in app.flashes('success') %}
 		<div class = "alert alert-success">
@@ -28,7 +28,7 @@
 				<td>{{ qcm.NomQcm }}</td>
 				<td>
 					<a href = "{{ path('edit', {id:qcm.IdQcm}) }}" class = "btn btn-secondary">Modifier</a>
-					<form method = "post" action="{{ path('delete', {id:qcm.IdQcm}) }}" style = "display: inline-block" onsubmit = "return confirm('Etes-vous sûr de vouloir supprimer ce QCM ?')">
+					<form method = "post" action="{{ path('delete', {id:qcm.IdQcm}) }}" style = "display: inline-block" onsubmit = "return confirm('Etes-vous sÃ»r de vouloir supprimer ce QCM ?')">
 						<input type = "hidden" name = "_method" value = "DELETE">
 						<input type = "hidden" name = "_token" value = "{{ csrf_token('delete' ~ qcm.IdQcm) }}">
 						<button class = "btn btn-danger">Supprimer</button>

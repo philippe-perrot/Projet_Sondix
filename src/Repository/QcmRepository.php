@@ -29,11 +29,11 @@ class QcmRepository extends ServiceEntityRepository
             ->getResult();
     }
     
-    //Retourne les QCM validés et mis en ligne
+    //Retourne les QCM validï¿½s et mis en ligne
     private function findVisibleQcm(): QueryBuilder
     {
         return $this->createQueryBuilder('qcm')
-            ->where('qcm.validation_qcm = 0');
+            ->where('qcm.etat_qcm = 0');
     }
 
     // /**

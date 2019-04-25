@@ -13,7 +13,7 @@ class QcmType extends AbstractType
     {
         $builder
             ->add('nom_qcm')
-            ->add('validation_qcm')
+            ->add('etat_qcm')
         ;
     }
 
