@@ -20,14 +20,14 @@ class AdminQcmController extends AbstractController
         $this->em = $em;
     }
     
-    //R�cup�re tout les QCM existants
+    //Récupère tout les QCM existants
     public function index() 
     {
         $liste_qcm = $this->qcm->findAll();
         return $this->render('admin/index.html.twig', compact('liste_qcm'));
     }
     
-    //Permet de cr�er un nouveau QCM
+    //Permet de créer un nouveau QCM
     public function new(Request $request) 
     {
         $qcm = new Qcm();

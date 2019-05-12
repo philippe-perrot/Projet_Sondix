@@ -2,9 +2,13 @@
 
 namespace App\Repository;
 
+use App\Entity\Qcm;
+use App\Entity\Question;
 use App\Entity\Reponse;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\Query\ResultSetMapping;
 
 /**
  * @method Reponse|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +21,27 @@ class ReponseRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Reponse::class);
+    }
+
+    public function getReponses (Array $question): array
+    {
+       return $this->createQueryBuilder('reponse')
+            ->where('reponse.id_question IN (:id)')
+            ->setParameter('id', $question)
+            ->getQuery()
+            ->getResult();
+
+    }
+
+    public function getBonnesReponses (array $id_quest): array
+    {
+        return $this->createQueryBuilder('reponse')
+            ->where('reponse.correcte = 1')
+            ->andWhere('reponse.id_question IN (:id)')
+            ->setParameter('id', $id_quest)
+            ->getQuery()
+            ->getResult();
+
     }
 
     // /**

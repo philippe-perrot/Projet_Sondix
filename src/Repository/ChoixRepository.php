@@ -5,6 +5,9 @@ namespace App\Repository;
 use App\Entity\Choix;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\DBAL\DriverManager;
+use Doctrine\DBAL\Configuration;
+use Doctrine\DBAL\Connection;
 
 /**
  * @method Choix|null find($id, $lockMode = null, $lockVersion = null)
@@ -17,6 +20,17 @@ class ChoixRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Choix::class);
+    }
+
+    public function createChoice (int $id_resultat, int $id_question, int $id_reponse)
+    {
+        $config = new Configuration();
+        $connectionParams = array(
+            'url' => 'mysql://root:@127.0.0.1:3306/bdd_sondix'
+        );
+        $sql = "INSERT INTO choix (id, id_resultat, id_question, id_reponse) VALUES (NULL, :id_resultat, :id_question, :id_reponse)";
+        $stmt = DriverManager::getConnection($connectionParams, $config)->prepare($sql);
+        $stmt->execute(array(':id_resultat' => $id_resultat, ':id_question' => $id_question, ':id_reponse' => $id_reponse));
     }
 
     // /**

@@ -9,6 +9,9 @@
 			<div class = "col-md-8">
 				<h1>{{ qcm.NomQCM }}</h1>
 			</div>
+			<div class = "col-md-4">
+				<a href = "{{ path('response', {id: qcm.IdQcm, slug: qcm.slug}) }}"><button type="button" class="btn btn-primary">Répondre</button></a>
+			</div>
 		</div>
 	</div>
 	

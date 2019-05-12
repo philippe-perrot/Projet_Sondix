@@ -14,7 +14,17 @@ show:
     path: /qcm/{slug}-{id}
     controller: App\Controller\QcmController::show
     requirements: 
-        slug : '[a-z0-9\-]*'   
+        slug : '[a-z0-9\-]*'
+response:
+    path: /qcm/repondre/{slug}-{id}
+    controller: App\Controller\QcmController::response
+    requirements:
+        slug: '[a-z0-9\-]*'
+submit:
+    path: /qcm/submit/{slug}-{id}
+    controller: App\Controller\QcmController::submit
+    requirements:
+        slug: '[a-z0-9\-]*'
 index: 
     path: /admin
     controller: App\Controller\Admin\AdminQcmController::index
@@ -29,3 +39,5 @@ delete:
     path: /admin/{id}
     controller: App\Controller\Admin\AdminQcmController::delete
     methods: DELETE
+
+

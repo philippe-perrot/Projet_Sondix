@@ -29,12 +29,13 @@ class QcmRepository extends ServiceEntityRepository
             ->getResult();
     }
     
-    //Retourne les QCM valid�s et mis en ligne
+    //Retourne les QCM validés et mis en ligne
     private function findVisibleQcm(): QueryBuilder
     {
         return $this->createQueryBuilder('qcm')
             ->where('qcm.etat_qcm = 0');
     }
+
 
     // /**
     //  * @return Qcm[] Returns an array of Qcm objects

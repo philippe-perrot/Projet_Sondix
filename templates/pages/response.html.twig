@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'QCM - Sondix' %}
+
+{% block body %}
+
+    <div class = "container mt-4">
+        <div class = "row">
+            <div class = "col-md-8">
+                <h1>{{ qcm.NomQCM }}</h1>
+            </div>
+            <div class = "col-md-8">
+                <form method="post" action="{{ path('submit', {id: qcm.IdQcm, slug: qcm.slug}) }}">
+                    <input type = "hidden" name="qcm" value="{{ qcm.IdQcm }}">
+                    {% for question in liste_questions %}
+                        <div class="form-group">
+                            <label for="question">{{ question.valeur }}</label>
+                            <input type = "hidden" name="question[]" value="{{ question.id }}">
+                            {% for reponse in liste_reponses %}
+                                {% if reponse.IdQuestion == question.id %}
+                                    <div class="form-check">
+                                        <input class="form-check-input" name = "reponse{{ reponse.IdQuestion }}[]" type="checkbox" value="{{ reponse.valeur }}" id="{{ reponse.id }}">
+                                        <input type = "hidden" name="{{ reponse.valeur }}" value="{{ reponse.id }}">
+                                        <label class="form-check-label" for="{{ reponse.id }}">
+                                            {{ reponse.valeur }}
+                                        </label>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary">Soumettre le QCM</button>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
