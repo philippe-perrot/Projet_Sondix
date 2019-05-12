@@ -39,5 +39,10 @@ delete:
     path: /admin/{id}
     controller: App\Controller\Admin\AdminQcmController::delete
     methods: DELETE
+login:
+    path: /login
+    controller : App\Controller\SecurityController::login
+logout:
+    path: /logout
 
 
