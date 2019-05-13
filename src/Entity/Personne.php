@@ -3,10 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PersonneRepository")
+ * @UniqueEntity(fields= "login", message="Ce login existe déjà, veuillez en choisir un autre")
  */
 class Personne implements UserInterface, \Serializable
 {
@@ -33,7 +35,7 @@ class Personne implements UserInterface, \Serializable
     private $prenom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $login;
 
@@ -41,6 +43,10 @@ class Personne implements UserInterface, \Serializable
      * @ORM\Column(type="string", length=255)
      */
     private $mdp;
+
+    public function __construct() {
+        $this->id_role = "2";
+    }
 
     public function getId(): ?int
     {

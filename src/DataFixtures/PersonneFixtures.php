@@ -21,11 +21,11 @@ class PersonneFixtures extends Fixture
         // $manager->persist($product);
 
         $personne = new Personne();
-        $personne->setLogin('root');
-        $personne->setMdp($this->encoder->encodePassword($personne, 'root'));
-        $personne->setIdRole('4');
-        $personne->setNom('root');
-        $personne->setPrenom('root');
+        $personne->setLogin('Employe1');
+        $personne->setMdp($this->encoder->encodePassword($personne, 'Employe1'));
+        $personne->setIdRole('3');
+        $personne->setNom('Employe1');
+        $personne->setPrenom('Employe1');
         $manager->persist($personne);
         $manager->flush();
     }
